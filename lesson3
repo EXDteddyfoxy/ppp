@@ -1,0 +1,31 @@
+class Fighter:
+    def __init__(self, name, health):
+        self.name = name
+        self.health = health
+
+    def punch(self, opponent):
+
+        opponent.health -= 10
+        print(f"{self.name} нанес удар по {opponent.name}! У {opponent.name} осталось {opponent.health} здоровья.")
+
+    def is_alive(self):
+        
+        return self.health > 0
+
+
+class Fight:
+    def __init__(self, fighter1, fighter2):
+        self.fighter1 = fighter1
+        self.fighter2 = fighter2
+
+    def start_fight(self):
+        print(f"Бой начался между {self.fighter1.name} и {self.fighter2.name}!")
+        while self.fighter1.is_alive() and self.fighter2.is_alive():
+            self.fighter1.punch(self.fighter2)
+            if not self.fighter2.is_alive():
+                print(f"{self.fighter2.name} повержен!")
+                break
+            self.fighter2.punch(self.fighter1)
+            if not self.fighter1.is_alive():
+                print(f"{self.fighter1.name} повержен!")
+                break
